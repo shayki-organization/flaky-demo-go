@@ -2,6 +2,10 @@ package calc
 
 import (
 	"math/rand"
+	"os"
+	"testing"
+)import (
+	"math/rand"
 	"testing"
 )
 
@@ -38,5 +42,14 @@ func TestFlakyMulUnderContention(t *testing.T) {
 	}
 	if got := Mul(3, 3); got != 9 {
 		t.Fatalf("Mul(3,3) = %d, want 9", got)
+	}
+}
+
+func TestFlakyFailsOnFirstAttemptOnly(t *testing.T) {
+	if os.Getenv("GITHUB_RUN_ATTEMPT") == "1" {
+		t.Fatal("flaky: simulated first-attempt failure (GITHUB_RUN_ATTEMPT=1)")
+	}
+	if got := Add(1, 1); got != 2 {
+		t.Fatalf("Add(1,1) = %d, want 2", got)
 	}
 }

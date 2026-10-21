@@ -4,9 +4,6 @@ import (
 	"math/rand"
 	"os"
 	"testing"
-)import (
-	"math/rand"
-	"testing"
 )
 
 func TestAdd(t *testing.T) {
